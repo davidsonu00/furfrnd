@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const userSchema = mongoose.Schema({
+const userSchema = new mongoose.Schema({
   fullname: {
     type: String,
     trim: true
@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema({
   },
   cart: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Product"
+    ref: 'Product'
   }],
   role: {
     type: String,
@@ -29,18 +29,28 @@ const userSchema = mongoose.Schema({
     type: Array,
     default: []
   },
-  contact: Number,
-  picture: String,
-
+  contact: {
+    type: Number
+  },
+  picture: {
+    type: String
+  },
   isVerified: {
     type: Boolean,
     default: false
   },
-  verifyOtp: String,
-  verifyOtpExpiry: Date,
-
-  resetOtp: String,
-  resetOtpExpiry: Date
+  verifyOtp: {
+    type: String
+  },
+  verifyOtpExpiry: {
+    type: Date
+  },
+  resetOtp: {
+    type: String
+  },
+  resetOtpExpiry: {
+    type: Date
+  }
 }, { timestamps: true });
 
 module.exports = mongoose.model('user', userSchema);

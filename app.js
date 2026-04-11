@@ -53,14 +53,11 @@ app.use((req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
 
-  res.locals.modal = req.flash('modal')[0] || '';
-  res.locals.step = req.flash('step')[0] || '';
-  res.locals.email = req.flash('email')[0] || '';
+  res.locals.modal = req.query.modal || '';
+  res.locals.email = req.query.email || '';
 
   next();
 });
-
-
 
 app.use('/', homeRouter);
 app.use('/register', registerRouter);
