@@ -1,0 +1,45 @@
+<nav class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+    <a href="/" class="text-3xl font-extrabold tracking-tight text-teal-700">
+      🐶 furfrnd
+    </a>
+
+    <button id="mobileMenuBtn" class="rounded-xl border border-slate-200 p-2 text-slate-700 md:hidden">
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="hidden items-center gap-8 md:flex">
+      <a href="/" class="text-sm font-semibold text-slate-700 transition hover:text-teal-700">Home</a>
+      <a href="/shop" class="text-sm font-semibold text-slate-700 transition hover:text-teal-700">Shop</a>
+
+      <button type="button" data-open-modal="register" class="text-sm font-semibold text-slate-700 transition hover:text-teal-700">
+        Register
+      </button>
+
+      <div class="group relative">
+        <button type="button" class="text-sm font-semibold text-slate-700 transition hover:text-teal-700">
+          Login
+        </button>
+
+        <div class="invisible absolute right-0 top-full mt-3 w-52 rounded-2xl border border-slate-200 bg-white p-2 opacity-0 shadow-xl transition-all duration-200 group-hover:visible group-hover:opacity-100">
+          <button type="button" data-open-modal="user-login" class="block w-full rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50">
+            Login as User
+          </button>
+          <button type="button" data-open-modal="admin-login" class="block w-full rounded-xl px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-slate-50">
+            Login as Admin
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="mobileMenu" class="hidden border-t border-slate-200 bg-white md:hidden">
+    <div class="space-y-1 px-4 py-4">
+      <a href="/" class="block rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">Home</a>
+      <a href="/shop" class="block rounded-xl px-3 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50">Shop</a>
+      <button type="button" data-open-modal="register" class="block w-full rounded-xl px-3 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50">Register</button>
+      <button type="button" data-open-modal="user-login" class="block w-full rounded-xl px-3 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50">Login as User</button>
+      <button type="button" data-open-modal="admin-login" class="block w-full rounded-xl px-3 py-3 text-left text-sm font-semibold text-slate-700 hover:bg-slate-50">Login as Admin</button>
+    </div>
+  </div>
+</nav>

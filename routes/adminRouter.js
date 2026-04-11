@@ -1,25 +1,37 @@
 const express = require('express');
 const router = express.Router();
-const ownerModel = require('../models/owner-model');
-const isLoggedin = require('../middlewares/isLoggedIn');
+const isLoggedIn = require('../middlewares/isLoggedIn');
 const productModel = require('../models/product-model');
 const upload = require('../config/multer-config');
-const dogModel = require('../models/dog-model'); // update path if needed
+const authController = require('../controllers/authController');
 
+router.post('/login', authController.adminLogin);
 
-// Dashboard Route
-router.get("/", isLoggedin, async function (req, res) {
-    res.render("dashboard");
+router.get('/', isLoggedIn, async (req, res) => {
+    if (!req.user || req.user.role !== 'admin') {
+        req.flash('error', 'Unauthorized access.');
+
+        return res.redirect('/');
+    }
+   
+    res.render('dashboard');
 });
 
-// Form to Create Product
-router.get('/create', function (req, res) {
+router.get('/create', isLoggedIn, (req, res) => {
+    if (!req.user || req.user.role !== 'admin') {
+        req.flash('error', 'Unauthorized access.');
+        return res.redirect('/');
+    }
     res.render('createProduct');
 });
 
-// Handle Form Submission
-router.post('/create', upload.single("image"), async (req, res) => {
+router.post('/create', isLoggedIn, upload.single('image'), async (req, res) => {
     try {
+        if (!req.user || req.user.role !== 'admin') {
+            req.flash('error', 'Unauthorized access.');
+            return res.redirect('/');
+        }
+
         const {
             name,
             price,
@@ -45,18 +57,18 @@ router.post('/create', upload.single("image"), async (req, res) => {
             age,
             vaccination,
             size,
-            traits: traits ? traits.split(",").map(str => str.trim()) : [],
+            traits: traits ? traits.split(',').map(item => item.trim()) : [],
             description
         });
 
-        await newProduct.save(); // ✅ Save the instance you just created
+        await newProduct.save();
 
-        req.flash('success', 'Product created successfully');
-        res.redirect('/shop');
-
+        req.flash('success', 'Product created successfully.');
+        return res.redirect('/shop');
     } catch (err) {
-        console.error("❌ Error in product creation:", err);
-        res.status(500).send("Something went wrong");
+        console.error(err);
+        req.flash('error', 'Something went wrong while creating product.');
+        return res.redirect('/admin/create');
     }
 });
 

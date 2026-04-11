@@ -2,34 +2,52 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../models/user-model');
 
 module.exports = async (req, res, next) => {
-    const token = req.cookies.token;
+  const token = req.cookies.token;
 
-    if (token) {
-        try {
-            const decoded = jwt.verify(token, process.env.JWT_KEY);
-            const user = await userModel.findById(decoded.id).select("-password");
+  if (!token) {
+    req.user = null;
+    return next();
+  }
 
-            if (user) {
-                req.user = user;
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_KEY);
 
-                // Merge guest cart into user's cart (avoid duplicates)
-                if (req.session.guestCart?.length > 0) {
-                    const uniqueItems = [...new Set([
-                        ...user.cart.map(id => id.toString()),
-                        ...req.session.guestCart
-                    ])];
-
-                    user.cart = uniqueItems;
-                    await user.save();
-                    req.session.guestCart = [];
-                }
-            }
-        } catch (err) {
-            console.error("setUserFromToken Error:", err);
-            res.clearCookie("token");
-            req.flash("error", "Session expired. Please login again.");
-        }
+    // Admin token support
+    if (decoded.role === 'admin') {
+      req.user = {
+        _id: 'admin',
+        fullname: 'Admin',
+        email: decoded.email,
+        role: 'admin',
+        cart: []
+      };
+      return next();
     }
 
-    next();
+    const user = await userModel.findById(decoded.id).select('-password');
+
+    if (user) {
+      req.user = user;
+
+      if (req.session.guestCart?.length > 0) {
+        const uniqueItems = [...new Set([
+          ...user.cart.map(id => id.toString()),
+          ...req.session.guestCart
+        ])];
+
+        user.cart = uniqueItems;
+        await user.save();
+        req.session.guestCart = [];
+      }
+    } else {
+      req.user = null;
+      res.clearCookie('token');
+    }
+  } catch (err) {
+    console.error('setUserFromToken Error:', err);
+    req.user = null;
+    res.clearCookie('token');
+  }
+
+  next();
 };

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Verify Reset OTP - furfrnd</title>
+</head><body>
+    <div class="container">
+        <h2>Verify Reset Code</h2>
+        <% if (typeof error !== 'undefined' && error && error.length) { %>
+            <div class="flash-message error-flash"><%= error.join(', ') %></div>
+        <% } %>
+        <% if (typeof success !== 'undefined' && success && success.length) { %>
+            <div class="flash-message success-flash"><%= success.join(', ') %></div>
+        <% } %>
+        <form action="/register/verify-reset-otp" method="POST">
+            <input type="hidden" name="email" value="<%= email || '' %>">
+            <input type="text" name="otp" placeholder="Enter 6-digit reset code" maxlength="6" required>
+            <button type="submit">Verify Code</button>
+        </form>
+        <a href="/register/forgot-password">← Back</a>
+    </div>
+</body></html>

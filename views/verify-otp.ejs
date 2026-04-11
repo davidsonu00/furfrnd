@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html><head>
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Verify OTP - furfrnd</title>
+</head><body>
+    <div class="container">
+        <h2>Verify your email</h2>
+        <% if (typeof error !== 'undefined' && error && error.length) { %>
+            <div class="flash-message error-flash"><%= error.join(', ') %></div>
+        <% } %>
+        <% if (typeof success !== 'undefined' && success && success.length) { %>
+            <div class="flash-message success-flash"><%= success.join(', ') %></div>
+        <% } %>
+        <form action="/register/verify-otp" method="POST">
+            <input type="hidden" name="email" value="<%= email || '' %>">
+            <input type="text" name="otp" placeholder="Enter 6-digit OTP" maxlength="6" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+        <a href="/register">← Back to Register</a>
+    </div>
+</body></html>

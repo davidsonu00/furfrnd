@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - furfrnd</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #f6f8fb, #e9eef5);
+      font-family: Arial, sans-serif;
+    }
+
+    .admin-login-wrapper {
+      width: 100%;
+      max-width: 420px;
+      padding: 20px;
+    }
+
+    .admin-login-card {
+      background: #fff;
+      padding: 35px 30px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+      text-align: center;
+    }
+
+    .admin-login-card h2 {
+      margin-bottom: 20px;
+      color: #222;
+    }
+
+    .admin-login-card .input-field {
+      margin-bottom: 16px;
+    }
+
+    .admin-login-card input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    .admin-login-card input:focus {
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+    }
+
+    .admin-login-card button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #111827;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .admin-login-card button:hover {
+      background: #1f2937;
+    }
+
+    .flash-message {
+      margin-bottom: 15px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+
+    .success-flash {
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    .error-flash {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 14px;
+      color: #2563eb;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-login-wrapper">
+    <div class="admin-login-card">
+      <h2>Admin Login</h2>
+
+      <% if (typeof success !== 'undefined' && success && success.length) { %>
+        <div class="flash-message success-flash"><%= success.join(', ') %></div>
+      <% } %>
+
+      <% if (typeof error !== 'undefined' && error && error.length) { %>
+        <div class="flash-message error-flash"><%= error.join(', ') %></div>
+      <% } %>
+
+      <form action="/admin/login" method="POST">
+        <div class="input-field">
+          <input type="email" name="email" placeholder="Admin Email" required>
+        </div>
+        <div class="input-field">
+          <input type="password" name="password" placeholder="Password" required>
+        </div>
+        <div class="input-field">
+          <button type="submit">Login as Admin</button>
+        </div>
+      </form>
+
+      <a href="/register" class="back-link">Back to user login</a>
+    </div>
+  </div>
+</body>
+</html>

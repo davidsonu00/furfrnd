@@ -1,864 +1,451 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Furfrnd - Where Tails Wag & Friends Meet</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    />
-    <style>
-      body {
-        font-family: "Segoe UI", sans-serif;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Furfrnd - Find Your Perfect Companion</title>
 
-      .logo-text {
-        font-family: "Quicksand", sans-serif;
-        font-size: 2rem;
-        color: #2aa8a8;
-        /* Teal */
-        font-weight: 600;
-        letter-spacing: 1px;
-        background: linear-gradient(45deg, #2aa8a8, #ff6b6b);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      .hero {
-        background: linear-gradient(
-            rgba(42, 168, 168, 0.9),
-            rgba(42, 168, 168, 0.8)
-          ),
-          url("https://images.unsplash.com/photo-1587300003388-59208cc962cb")
-            center/cover;
-        height: 80vh;
-        display: flex;
-        align-items: center;
-        color: white;
-      }
-
-      .hero {
-        background: linear-gradient(
-            rgba(42, 168, 168, 0.9),
-            rgba(42, 168, 168, 0.8)
-          ),
-          url("https://images.unsplash.com/photo-1587300003388-59208cc962cb")
-            center/cover;
-        height: 60vh;
-        /* Reduced from 80vh */
-        display: flex;
-        align-items: center;
-        color: white;
-      }
-
-      /* Carousel Adjustments */
-      .carousel-inner {
-        max-width: 800px;
-        margin: 0 auto;
-      }
-
-      .carousel-item img {
-        height: 400px;
-        width: auto;
-        max-width: 100%;
-        margin: 0 auto;
-        border-radius: 15px;
-      }
-
-      /* Carousel Controls */
-      .carousel-control-prev,
-      .carousel-control-next {
-        width: 5%;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 5px;
-      }
-
-      .carousel-control-prev-icon,
-      .carousel-control-next-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-      }
-
-      .carousel-modern {
-        border-radius: 20px;
-        overflow: hidden;
-        position: relative;
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        background: linear-gradient(145deg, #3be5e8 0%, #28a0eb 100%);
-        border: 2px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .carousel-modern .carousel-inner {
-        border-radius: 18px;
-        overflow: hidden;
-        transition: transform 0.3s ease;
-      }
-
-      .carousel-modern:hover .carousel-inner {
-        transform: scale(0.98);
-      }
-
-      .image-wrapper {
-        position: relative;
-        overflow: hidden;
-        border-radius: 18px;
-      }
-
-      .image-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(0, 0, 0, 0) 60%,
-          rgba(0, 0, 0, 0.5) 100%
-        );
-      }
-
-      .carousel-modern img {
-        height: 450px;
-        object-fit: cover;
-        transform: scale(1);
-        transition: transform 0.3s ease;
-      }
-
-      .carousel-modern .carousel-item.active img {
-        transform: scale(1.02);
-      }
-
-      .dog-name {
-        position: absolute;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        color: white;
-        font-size: 1.5rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        background: rgba(42, 168, 168, 0.7);
-        padding: 8px 20px;
-        border-radius: 30px;
-        backdrop-filter: blur(5px);
-      }
-
-      .carousel-control-prev,
-      .carousel-control-next {
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 107, 107, 0.9);
-        border-radius: 50%;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 0.8;
-        transition: all 0.3s ease;
-        margin: 0 20px;
-      }
-
-      .carousel-control-prev:hover,
-      .carousel-control-next:hover {
-        opacity: 1;
-        transform: translateY(-50%) scale(1.1);
-        background: #ff5252;
-      }
-
-      .carousel-control-prev-icon,
-      .carousel-control-next-icon {
-        filter: invert(1);
-        width: 1.5rem;
-        height: 1.5rem;
-      }
-
-      /* Custom indicators */
-      .carousel-indicators [data-bs-target] {
-        width: 40px;
-        height: 5px;
-        border-radius: 2px;
-        background-color: rgba(98, 12, 12, 0.5);
-        transition: all 0.3s ease;
-      }
-
-      .carousel-indicators .active {
-        background-color: #ff6b6b;
-        width: 60px;
-      }
-
-      .cta-btn {
-        margin: 10px;
-      }
-
-      .help-icon {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 60px;
-        height: 60px;
-        background: #ff6b6b;
-        color: white !important;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
-        transition: all 0.3s ease;
-        z-index: 1000;
-        text-decoration: none;
-      }
-
-      .help-icon:hover {
-        background: #ff5252;
-        transform: scale(1.1) rotate(15deg);
-      }
-
-      .help-icon i {
-        font-size: 1.5rem;
-      }
-
-      .testimonial {
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        padding: 20px;
-      }
-
-      .hero-about {
-        background: linear-gradient(
-            rgba(42, 168, 168, 0.9),
-            rgba(42, 168, 168, 0.8)
-          ),
-          url("https://images.unsplash.com/photo-1583511655857-d19b40a7a54e")
-            center/cover;
-        height: 50vh;
-        display: flex;
-        align-items: center;
-        color: white;
-      }
-
-      .mission-card {
-        border: 2px solid var(--primary);
-        border-radius: 15px;
-        transition: transform 0.3s ease;
-      }
-
-      .mission-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(42, 168, 168, 0.1);
-      }
-
-      .team-member img {
-        width: 150px;
-        height: 150px;
-        object-fit: cover;
-        border: 3px solid var(--primary);
-      }
-
-      .value-icon {
-        font-size: 2.5rem;
-        color: var(--primary);
-      }
-
-      .footer {
-        background: linear-gradient(135deg, #2aa8a8, #1f7a7a);
-        color: white;
-        padding: 5rem 0 2rem;
-        position: relative;
-      }
-
-      .footer-brand .logo-text {
-        font-size: 2rem;
-      }
-
-      .footer-heading {
-        color: white;
-        font-size: 1.25rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        position: relative;
-        padding-bottom: 0.5rem;
-      }
-
-      .footer-heading::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 40px;
-        height: 2px;
-        background: #ff6b6b;
-      }
-
-      .footer-link {
-        color: rgba(255, 255, 255, 0.8);
-        text-decoration: none;
-        transition: all 0.3s ease;
-      }
-
-      .footer-link:hover {
-        color: white;
-        padding-left: 5px;
-      }
-
-      .social-link {
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        margin-right: 1rem;
-        transition: all 0.3s ease;
-      }
-
-      .social-link:hover {
-        background: #ff6b6b;
-        transform: translateY(-3px);
-      }
-
-      .newsletter-form .form-control {
-        border-radius: 25px 0 0 25px;
-        border: none;
-        padding: 0.75rem 1.5rem;
-      }
-
-      .newsletter-form .btn {
-        border-radius: 0 25px 25px 0;
-        padding: 0.75rem 1.5rem;
-      }
-
-      .back-to-top {
-        position: fixed;
-        bottom: 100px;
-        right: 30px;
-        width: 40px;
-        height: 40px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        opacity: 0;
-        transition: all 0.3s ease;
-        text-decoration: none;
-      }
-
-      .back-to-top.show {
-        opacity: 1;
-      }
-
-      /* Scroll Animation */
-      @media (min-width: 768px) {
-        .footer-link:hover::before {
-          content: "→ ";
-          position: absolute;
-          left: -15px;
-          color: #ff6b6b;
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: "#2AA8A8",
+              coral: "#FF6B6B",
+              cream: "#F8F7F4",
+              dark: "#0F172A"
+            }
+          },
+          boxShadow: {
+            soft: "0 20px 50px rgba(15, 23, 42, 0.12)"
+          }
         }
       }
-    </style>
-  </head>
+    }
+  </script>
 
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
-      <a class="logo-text" href="/"> 🐶 furfrnd </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarNav"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/register">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
-          </li>
-          <li class="nav-item"><a class="nav-link" href="/Shop">Shop</a></li>
-        </ul>
-      </div>
-    </nav>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body class="bg-brand-cream text-slate-800">
 
-    <!-- Hero Section -->
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="container text-center" style="max-width: 800px">
-        <h1 class="display-5 fw-bold mb-4">Where Tails Wag & Friends Meet</h1>
-        <p class="lead mb-4">
-          Join a community of dog lovers & discover your perfect fur buddy.
-        </p>
-        <a href="/shop">
-          <button class="btn btn-light cta-btn">
-            Meet Our Dogs <i class="bi bi-arrow-right"></i></button
-        ></a>
-        <a href="/register"
-          ><button class="btn btn-outline-light cta-btn">
-            Join the Pack <i class="bi bi-arrow-right"></i></button
-        ></a>
-      </div>
-    </section>
+  <%- include('partials/header') %>
 
-    <!-- Featured Dogs / Carousel -->
-    <section class="container my-5">
-      <h2 class="text-center mb-4">Featured Puppies</h2>
-      <div class="row">
-        <!-- Carousel Column -->
-        <div class="col-md-8">
-          <div
-            id="carouselDogs"
-            class="carousel slide carousel-modern"
-            data-bs-ride="carousel"
-            data-bs-interval="2500"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active text-center">
-                <div class="image-wrapper">
-                  <img
-                    src="https://images.squarespace-cdn.com/content/v1/54e7a1a6e4b08db9da801ded/1bd563c1-7bbb-4b44-af21-a60408b6f129/44.png"
-                    class="d-block w-100 rounded-3"
-                    alt="dog1"
-                  />
-                  <div class="image-overlay"></div>
-                  <h5 class="mt-2 dog-name">Jimmy German-Shepherd</h5>
+  <main>
+    <section class="relative overflow-hidden bg-[linear-gradient(rgba(42,168,168,0.72),rgba(42,168,168,0.72)),url('https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1400&q=80')] bg-cover bg-center">
+      <div class="mx-auto grid min-h-[78vh] max-w-7xl items-center gap-10 px-4 py-20 sm:px-6 lg:grid-cols-2 lg:px-8">
+        <div class="text-white">
+          <span class="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur-md">
+            Trusted dogs. Trusted people. Trusted platform.
+          </span>
+
+          <h1 class="mt-6 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+            Find a dog that feels like family from day one.
+          </h1>
+
+          <p class="mt-6 max-w-xl text-base leading-7 text-white/90 sm:text-lg">
+            Browse healthy, verified dogs, shop with confidence, and manage everything in one beautiful experience for buyers and admin.
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/shop" class="rounded-full bg-white px-6 py-3 text-sm font-bold text-teal-700 transition hover:bg-slate-100">
+              Explore Dogs
+            </a>
+            <button type="button" data-open-modal="register" class="rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white backdrop-blur transition hover:bg-white/20">
+              Join the Pack
+            </button>
+          </div>
+        </div>
+
+        <div class="rounded-[32px] border border-white/20 bg-white/10 p-4 shadow-soft backdrop-blur-md">
+          <div id="carouselDogs" class="relative overflow-hidden rounded-[28px]">
+            <div class="carousel-slides relative h-[420px]">
+              <div class="carousel-item absolute inset-0 block">
+                <img src="https://images.squarespace-cdn.com/content/v1/54e7a1a6e4b08db9da801ded/1bd563c1-7bbb-4b44-af21-a60408b6f129/44.png" alt="Jimmy German Shepherd" class="h-full w-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 rounded-full bg-white/15 px-5 py-2 text-sm font-bold text-white backdrop-blur-md">
+                  Jimmy — German Shepherd
                 </div>
               </div>
-              <div class="carousel-item text-center">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSczuNYi5jgvyt5vgfQyxhNJQYDY0Pup5Q_0g&s"
-                  class="d-block w-100 rounded-3"
-                  alt="Dog 3"
-                />
-                <h5 class="mt-2 dog-name">Bella - Beagle</h5>
+
+              <div class="carousel-item absolute inset-0 hidden">
+                <img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=1200&q=80" alt="Bella Beagle" class="h-full w-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 rounded-full bg-white/15 px-5 py-2 text-sm font-bold text-white backdrop-blur-md">
+                  Bella — Beagle
+                </div>
               </div>
 
-              <div class="carousel-item text-center">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwcec-MiUniIyrnEHFBRgSjut4X6wvl07F6g&s"
-                  class="d-block w-100 rounded-3"
-                  alt="Dog 3"
-                />
-                <h5 class="mt-2 dog-name">Lily -Golden Retriever</h5>
+              <div class="carousel-item absolute inset-0 hidden">
+                <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80" alt="Lily Golden Retriever" class="h-full w-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 rounded-full bg-white/15 px-5 py-2 text-sm font-bold text-white backdrop-blur-md">
+                  Lily — Golden Retriever
+                </div>
               </div>
             </div>
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselDogs"
-              data-bs-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon bg-dark p-3 rounded"
-              ></span>
+
+            <button id="prevSlide" type="button" class="absolute left-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-rose-400 text-white shadow-lg transition hover:scale-105">
+              <i class="fas fa-chevron-left"></i>
             </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselDogs"
-              data-bs-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon bg-dark p-3 rounded"
-              ></span>
+
+            <button id="nextSlide" type="button" class="absolute right-4 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-rose-400 text-white shadow-lg transition hover:scale-105">
+              <i class="fas fa-chevron-right"></i>
             </button>
           </div>
         </div>
-        <!-- Dog Details Column -->
-        <div class="col-md-4 ps-md-4 mt-4 mt-md-0">
-          <div
-            class="dog-details-card p-4 rounded-3 shadow-sm"
-            style="background-color: #f8f9fa"
-          >
-            <h4 class="mb-3">Featured Breed Details</h4>
-            <div class="breed-info">
-              <h5 id="breed-name">Labrador Retriever</h5>
-              <ul class="list-unstyled">
-                <li class="mb-2" id="breed-age">
-                  <i class="fas fa-paw me-2 text-primary"></i>
-                  <strong>Age:</strong> 12 weeks
-                </li>
-                <li class="mb-2" id="breed-vaccinations">
-                  <i class="fas fa-syringe me-2 text-primary"></i>
-                  <strong>Vaccinations:</strong> Complete
-                </li>
-                <li class="mb-2" id="breed-size">
-                  <i class="fas fa-weight me-2 text-primary"></i>
-                  <strong>Size:</strong> Medium (25-35 kg)
-                </li>
-              </ul>
-              <hr />
-              <div class="breed-highlights">
-                <h6>Key Features:</h6>
-                <ul class="list-inline" id="breed-traits">
-                  <li class="list-inline-item badge bg-info me-1 mb-1">
-                    Family-friendly
-                  </li>
-                  <li class="list-inline-item badge bg-info me-1 mb-1">
-                    High Energy
-                  </li>
-                  <li class="list-inline-item badge bg-info me-1 mb-1">
-                    Easy Training
-                  </li>
-                </ul>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+        <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-soft sm:p-8">
+          <h2 class="text-3xl font-black text-slate-900">Featured Puppy Details</h2>
+          <p class="mt-3 max-w-2xl text-slate-600">
+            A closer look at one of our most loved featured companions.
+          </p>
+
+          <div class="mt-8 grid gap-6 md:grid-cols-2">
+            <div>
+              <h3 id="breed-name" class="text-2xl font-extrabold text-teal-700">Jimmy — German Shepherd</h3>
+              <p id="breed-price" class="mt-3 text-3xl font-black text-slate-900">₹45,000</p>
+            </div>
+
+            <div class="grid gap-3">
+              <div id="breed-age" class="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+                <strong>Age:</strong> 12 weeks
               </div>
-              <div class="card p-3">
-                <button class="btn btn-primary w-100 mt-3">
-                  <i class="fas fa-heart me-2"></i> Adopt Now 
-        
-                </button>
+              <div id="breed-vaccinations" class="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+                <strong>Vaccinations:</strong> Complete
+              </div>
+              <div id="breed-size" class="rounded-2xl bg-slate-50 px-4 py-3 text-sm font-medium text-slate-700">
+                <strong>Size:</strong> Medium (25-35 kg)
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- Community Highlights -->
-    <section class="container my-5">
-      <h2 class="text-center mb-4">Community Highlights</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="testimonial">
-            <p>
-              "Furfrnd helped me find my new best friend! The process was smooth
-              and trustworthy."
-            </p>
-            <strong>- Aisha K.</strong>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="testimonial">
-            <p>
-              "I love the community aspect. I’ve made real friends and learned
-              so much about caring for my pup."
-            </p>
-            <strong>- Jason M.</strong>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <div class="testimonial">
-            <p>
-              "The site is beautiful, functional, and full of love for our furry
-              friends."
-            </p>
-            <strong>- Priya D.</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Why Furfrnd? -->
-    <section class="container my-5">
-      <h2 class="text-center mb-4">Why Choose Furfrnd?</h2>
-      <div class="row text-center">
-        <div class="col-md-4">
-          <i class="fas fa-dog fa-2x text-info"></i>
-          <h5 class="mt-2">Trusted Breeders</h5>
-          <p>
-            Every pup listed is from a vetted, ethical breeder with
-            transparency.
-          </p>
-        </div>
-        <div class="col-md-4">
-          <i class="fas fa-users fa-2x text-danger"></i>
-          <h5 class="mt-2">Real Owner Stories</h5>
-          <p>
-            Connect with real owners and hear genuine testimonials from the
-            Furfrnd fam.
-          </p>
-        </div>
-        <div class="col-md-4">
-          <i class="fas fa-shield-dog fa-2x text-warning"></i>
-          <h5 class="mt-2">Health & Safety</h5>
-          <p>All dogs come with verified health records and support.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="hero-about">
-      <div class="container text-center">
-        <h1 class="display-5 fw-bold">More Than Just a Pet Platform</h1>
-        <p class="lead">Connecting loving homes with happy paws since 2023</p>
-      </div>
-    </section>
-
-    <!-- Our Story -->
-    <section class="container py-5">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <h2 class="text-primary mb-4">Our Story</h2>
-          <p class="lead">
-            Founded by passionate dog lovers, Furfrnd began as a small
-            initiative to connect ethical breeders with caring families. Today,
-            we've grown into India's most trusted platform for canine adoption
-            and community building.
-          </p>
-        </div>
-        <div class="col-md-6">
-          <img
-            src="https://images.unsplash.com/photo-1583512603805-3cc6b41f3edb"
-            alt="Founders"
-            class="img-fluid rounded-3"
-          />
-        </div>
-      </div>
-    </section>
-
-    <!-- Core Values -->
-    <section class="bg-light py-5">
-      <div class="container">
-        <h2 class="text-center text-primary mb-5">Our Core Values</h2>
-        <div class="row g-4">
-          <div class="col-md-4 text-center">
-            <i class="fas fa-heartbeat value-icon"></i>
-            <h4 class="my-3">Ethical Practices</h4>
-            <p>
-              Every breeder undergoes strict verification to ensure humane
-              treatment of animals
-            </p>
-          </div>
-          <div class="col-md-4 text-center">
-            <i class="fas fa-users value-icon"></i>
-            <h4 class="my-3">Community First</h4>
-            <p>
-              Building a supportive network of dog lovers through events and
-              forums
-            </p>
-          </div>
-          <div class="col-md-4 text-center">
-            <i class="fas fa-shield-alt value-icon"></i>
-            <h4 class="my-3">Lifetime Support</h4>
-            <p>
-              24/7 veterinary consultation and training resources for every
-              adoption
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Team Section -->
-    <section class="container py-5">
-      <h2 class="text-center text-primary mb-5">Meet the Pack Leaders</h2>
-      <div class="row g-4 justify-content-center">
-        <div class="col-md-4 text-center">
-          <div class="team-member">
-            <img
-              src="https://randomuser.me/api/portraits/women/44.jpg"
-              class="rounded-circle mb-3"
-              alt="Team Member"
-            />
-            <h4>Priya Sharma</h4>
-            <p class="text-secondary">CEO & Founder</p>
-          </div>
-        </div>
-        <div class="col-md-4 text-center">
-          <div class="team-member">
-            <img
-              src="https://randomuser.me/api/portraits/men/32.jpg"
-              class="rounded-circle mb-3"
-              alt="Team Member"
-            />
-            <h4>Rahul Verma</h4>
-            <p class="text-secondary">Head Veterinarian</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="row g-5">
-          <!-- About Column -->
-          <div class="col-lg-4 mb-4">
-            <div class="footer-brand">
-              <span class="logo-text">🐶 furfrnd</span>
-            </div>
-            <p class="mt-3">
-              Connecting loving homes with happy paws through ethical adoption
-              practices.
-            </p>
-            <div class="social-icons mt-4">
-              <a href="#" class="social-link"
-                ><i class="fab fa-instagram"></i
-              ></a>
-              <a href="#" class="social-link"
-                ><i class="fab fa-facebook"></i
-              ></a>
-              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          <div class="mt-8">
+            <h4 class="text-sm font-extrabold uppercase tracking-[0.18em] text-slate-500">Key Features</h4>
+            <div id="breed-traits" class="mt-4 flex flex-wrap gap-2">
+              <span class="rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-700">Family-friendly</span>
+              <span class="rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-700">High Energy</span>
+              <span class="rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-700">Easy Training</span>
             </div>
           </div>
 
-          <!-- Quick Links -->
-          <div class="col-lg-2 col-6 mb-4">
-            <h5 class="footer-heading">Quick Links</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2">
-                <a href="/shop" class="footer-link">Adopt Now</a>
-              </li>
-              <li class="mb-2">
-                <a href="/about" class="footer-link">Our Story</a>
-              </li>
-              <li class="mb-2"><a href="#" class="footer-link">Breeders</a></li>
-              <li class="mb-2">
-                <a href="#" class="footer-link">Veterinary Care</a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Support -->
-          <div class="col-lg-2 col-6 mb-4">
-            <h5 class="footer-heading">Support</h5>
-            <ul class="list-unstyled">
-              <li class="mb-2"><a href="#" class="footer-link">FAQ</a></li>
-              <li class="mb-2">
-                <a href="#" class="footer-link">Shipping Policy</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="footer-link">Privacy Policy</a>
-              </li>
-              <li class="mb-2">
-                <a href="#" class="footer-link">Terms of Service</a>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Newsletter -->
-          <div class="col-lg-4 mb-4">
-            <h5 class="footer-heading">Join Our Pack</h5>
-            <p class="text-muted">
-              Get updates on new puppies and special offers
-            </p>
-            <form class="newsletter-form">
-              <div class="input-group">
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Enter your email"
-                />
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-paw"></i>
-                </button>
-              </div>
-            </form>
+          <div class="mt-8">
+            <a href="/shop" class="inline-flex items-center rounded-full bg-teal-700 px-6 py-3 text-sm font-bold text-white transition hover:bg-teal-800">
+              Shop Now
+            </a>
           </div>
         </div>
 
-        <div class="footer-bottom text-center py-4">
-          <div class="credits">
-            <small class="text-muted">
-              © 2023 Furfrnd. All rights reserved.
-              <span class="mx-2">|</span>
-              Made with <i class="fas fa-heart text-danger"></i> in India
-            </small>
+        <div class="grid gap-6">
+          <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-2xl text-teal-700">
+              <i class="fas fa-shield-dog"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Verified listings</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Showcase dogs with clear details, pricing, and trust-focused presentation for your buyers.
+            </p>
+          </div>
+
+          <div class="rounded-[28px] border border-slate-200 bg-white p-6 shadow-soft">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-2xl text-rose-500">
+              <i class="fas fa-cart-shopping"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Smooth shopping flow</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Let users register, login, add dogs to cart, and place orders in one connected experience.
+            </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Back to Top -->
-      <a href="#" class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-      </a>
-    </footer>
+    <section class="bg-white py-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+          <h2 class="text-3xl font-black text-slate-900 sm:text-4xl">Why Choose Furfrnd?</h2>
+          <p class="mx-auto mt-4 max-w-2xl text-slate-600">
+            Built for trust, clarity, and a warm adoption experience.
+          </p>
+        </div>
 
-    <!-- Floating Help Icon -->
-    <a href="#" class="help-icon">
-      <i class="fas fa-comment-dots fa-lg"></i>
-      <!-- Changed to Font Awesome icon -->
-    </a>
+        <div class="mt-12 grid gap-6 md:grid-cols-3">
+          <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-8">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-100 text-teal-700">
+              <i class="fas fa-dog"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Trusted Breeders</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Every dog listing can be shown with proper details, trust signals, and ethical presentation.
+            </p>
+          </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+          <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-8">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-100 text-rose-500">
+              <i class="fas fa-users"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Real Community</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Create a friendly destination where dog lovers discover pets and return with confidence.
+            </p>
+          </div>
 
-    <script>
-      // Dog details data array (match order with carousel slides)
-      const dogDetails = [
-        {
-          name: "Jimmy German-Shepherd",
-          age: "12 weeks",
-          vaccinations: "Complete",
-          size: "Medium (25-35 kg)",
-          traits: ["Family-friendly", "High Energy", "Easy Training"],
-          price: "₹45,000",
-        },
-        {
-          name: "Bella - Beagle",
-          age: "16 weeks",
-          vaccinations: "Pending Rabies",
-          size: "Small (10-15 kg)",
-          traits: ["Gentle", "Playful", "Low Maintenance"],
-          price: "₹32,000",
-        },
-        {
-          name: "Lily - Golden Retriever",
-          age: "14 weeks",
-          vaccinations: "Complete",
-          size: "Large (30-40 kg)",
-          traits: ["Intelligent", "Loyal", "Great with Kids"],
-          price: "₹55,000",
-        },
-      ];
+          <div class="rounded-[28px] border border-slate-200 bg-slate-50 p-8">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-amber-500">
+              <i class="fas fa-heart-circle-check"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Health & Care Focus</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Show vaccination, age, breed traits, and support details in a clean buyer-friendly way.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-      // Back to Top Button
-      window.addEventListener("scroll", () => {
-        const backToTop = document.querySelector(".back-to-top");
-        if (window.scrollY > 300) {
-          backToTop.classList.add("show");
-        } else {
-          backToTop.classList.remove("show");
-        }
-      });
+  <%- include('partials/footer') %>
 
-      // Update details when carousel slides
-      document
-        .getElementById("carouselDogs")
-        .addEventListener("slide.bs.carousel", (event) => {
-          const activeIndex = [
-            ...event.target.querySelectorAll(".carousel-item"),
-          ].indexOf(event.relatedTarget);
-          updateDogDetails(activeIndex);
-        });
+  <% const flashSuccess = success && success.length ? success[0] : null; %>
+  <% const flashError = error && error.length ? error[0] : null; %>
 
-      // Initial update on page load
-      document.addEventListener("DOMContentLoaded", () => {
-        updateDogDetails(0);
-      });
+  <div id="modalOverlay" class="pointer-events-none fixed inset-0 z-[100] hidden items-center justify-center bg-slate-950/40 p-4 backdrop-blur-md">
+    <div data-modal="register" class="modal-panel hidden w-full max-w-md rounded-[28px] bg-white p-6 shadow-soft">
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 class="text-2xl font-black text-slate-900">Create account</h3>
+          <p class="mt-2 text-sm text-slate-500">Join Furfrnd and start your journey.</p>
+        </div>
+        <button type="button" class="close-modal rounded-xl p-2 text-slate-500 hover:bg-slate-100">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
 
-      function updateDogDetails(index) {
-        const dog = dogDetails[index];
-        document.getElementById("breed-name").textContent = dog.name;
-        document.getElementById(
-          "breed-age"
-        ).innerHTML = `<strong>Age:</strong> ${dog.age}`;
-        document.getElementById(
-          "breed-vaccinations"
-        ).innerHTML = `<strong>Vaccinations:</strong> ${dog.vaccinations}`;
-        document.getElementById(
-          "breed-size"
-        ).innerHTML = `<strong>Size:</strong> ${dog.size}`;
-        document.getElementById("breed-price").textContent = dog.price;
+      <% if (flashSuccess && modal === 'register') { %>
+        <div class="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700"><%= flashSuccess %></div>
+      <% } %>
 
-        const traitsContainer = document.getElementById("breed-traits");
-        traitsContainer.innerHTML = dog.traits
-          .map(
-            (trait) =>
-              `<li class="list-inline-item badge bg-info me-1 mb-1">${trait}</li>`
-          )
-          .join("");
+      <% if (flashError && modal === 'register') { %>
+        <div class="mt-4 rounded-2xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700"><%= flashError %></div>
+      <% } %>
+
+      <form action="/register" method="POST" class="mt-6 space-y-4">
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Full name</label>
+          <input type="text" name="fullname" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-teal-500" placeholder="Enter your full name" />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Email</label>
+          <input type="email" name="email" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-teal-500" placeholder="Enter your email" />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Password</label>
+          <input type="password" name="password" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-teal-500" placeholder="Create a password" />
+        </div>
+        <button type="submit" class="w-full rounded-2xl bg-teal-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-teal-800">
+          Register
+        </button>
+      </form>
+    </div>
+
+    <div data-modal="user-login" class="modal-panel hidden w-full max-w-md rounded-[28px] bg-white p-6 shadow-soft">
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 class="text-2xl font-black text-slate-900">User login</h3>
+          <p class="mt-2 text-sm text-slate-500">Welcome back to Furfrnd.</p>
+        </div>
+        <button type="button" class="close-modal rounded-xl p-2 text-slate-500 hover:bg-slate-100">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+
+      <% if (flashSuccess && modal === 'user-login') { %>
+        <div class="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700"><%= flashSuccess %></div>
+      <% } %>
+
+      <% if (flashError && modal === 'user-login') { %>
+        <div class="mt-4 rounded-2xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700"><%= flashError %></div>
+      <% } %>
+
+      <form action="/register/login" method="POST" class="mt-6 space-y-4">
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Email</label>
+          <input type="email" name="email" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-teal-500" placeholder="Enter your email" />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Password</label>
+          <input type="password" name="password" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-teal-500" placeholder="Enter your password" />
+        </div>
+        <button type="submit" class="w-full rounded-2xl bg-teal-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-teal-800">
+          Login
+        </button>
+      </form>
+    </div>
+
+    <div data-modal="admin-login" class="modal-panel hidden w-full max-w-md rounded-[28px] bg-white p-6 shadow-soft">
+      <div class="flex items-start justify-between">
+        <div>
+          <h3 class="text-2xl font-black text-slate-900">Admin login</h3>
+          <p class="mt-2 text-sm text-slate-500">Access the admin dashboard.</p>
+        </div>
+        <button type="button" class="close-modal rounded-xl p-2 text-slate-500 hover:bg-slate-100">
+          <i class="fas fa-xmark"></i>
+        </button>
+      </div>
+
+      <% if (flashSuccess && modal === 'admin-login') { %>
+        <div class="mt-4 rounded-2xl bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700"><%= flashSuccess %></div>
+      <% } %>
+
+      <% if (flashError && modal === 'admin-login') { %>
+        <div class="mt-4 rounded-2xl bg-rose-50 px-4 py-3 text-sm font-medium text-rose-700"><%= flashError %></div>
+      <% } %>
+
+      <form action="/admin/login" method="POST" class="mt-6 space-y-4">
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Admin email</label>
+          <input type="email" name="email" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-slate-900" placeholder="Enter admin email" />
+        </div>
+        <div>
+          <label class="mb-2 block text-sm font-semibold text-slate-700">Password</label>
+          <input type="password" name="password" required class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-slate-900" placeholder="Enter password" />
+        </div>
+        <button type="submit" class="w-full rounded-2xl bg-slate-900 px-4 py-3 text-sm font-bold text-white transition hover:bg-slate-800">
+          Admin Login
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const dogDetails = [
+      {
+        name: "Jimmy — German Shepherd",
+        age: "12 weeks",
+        vaccinations: "Complete",
+        size: "Medium (25-35 kg)",
+        traits: ["Family-friendly", "High Energy", "Easy Training"],
+        price: "₹45,000"
+      },
+      {
+        name: "Bella — Beagle",
+        age: "16 weeks",
+        vaccinations: "Pending Rabies",
+        size: "Small (10-15 kg)",
+        traits: ["Gentle", "Playful", "Low Maintenance"],
+        price: "₹32,000"
+      },
+      {
+        name: "Lily — Golden Retriever",
+        age: "14 weeks",
+        vaccinations: "Complete",
+        size: "Large (30-40 kg)",
+        traits: ["Intelligent", "Loyal", "Great with Kids"],
+        price: "₹55,000"
       }
-    </script>
-  </body>
+    ];
+
+    const slides = document.querySelectorAll('.carousel-item');
+    let activeSlide = 0;
+
+    function updateDogDetails(index) {
+      const dog = dogDetails[index];
+      document.getElementById("breed-name").textContent = dog.name;
+      document.getElementById("breed-price").textContent = dog.price;
+      document.getElementById("breed-age").innerHTML = `<strong>Age:</strong> ${dog.age}`;
+      document.getElementById("breed-vaccinations").innerHTML = `<strong>Vaccinations:</strong> ${dog.vaccinations}`;
+      document.getElementById("breed-size").innerHTML = `<strong>Size:</strong> ${dog.size}`;
+      document.getElementById("breed-traits").innerHTML = dog.traits
+        .map(trait => `<span class="rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-700">${trait}</span>`)
+        .join('');
+    }
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('hidden', i !== index);
+        slide.classList.toggle('block', i === index);
+      });
+      activeSlide = index;
+      updateDogDetails(index);
+    }
+
+    document.getElementById('nextSlide')?.addEventListener('click', () => {
+      showSlide((activeSlide + 1) % slides.length);
+    });
+
+    document.getElementById('prevSlide')?.addEventListener('click', () => {
+      showSlide((activeSlide - 1 + slides.length) % slides.length);
+    });
+
+    if (slides.length) {
+      setInterval(() => {
+        showSlide((activeSlide + 1) % slides.length);
+      }, 3500);
+      showSlide(0);
+    }
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    const overlay = document.getElementById('modalOverlay');
+    const modalPanels = document.querySelectorAll('.modal-panel');
+
+    function openModal(modalName) {
+      if (!overlay) return;
+
+      overlay.classList.remove('hidden', 'pointer-events-none');
+      overlay.classList.add('flex');
+
+      modalPanels.forEach(panel => panel.classList.add('hidden'));
+
+      const activePanel = document.querySelector(`[data-modal="${modalName}"]`);
+      if (activePanel) {
+        activePanel.classList.remove('hidden');
+      }
+    }
+
+    function closeModal() {
+      if (!overlay) return;
+
+      overlay.classList.add('hidden', 'pointer-events-none');
+      overlay.classList.remove('flex');
+
+      modalPanels.forEach(panel => panel.classList.add('hidden'));
+    }
+
+    document.querySelectorAll('[data-open-modal]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const modalName = btn.getAttribute('data-open-modal');
+        openModal(modalName);
+      });
+    });
+
+    document.querySelectorAll('.close-modal').forEach(btn => {
+      btn.addEventListener('click', closeModal);
+    });
+
+    overlay?.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    const modalFromServer = "<%= modal || '' %>";
+    if (modalFromServer) {
+      openModal(modalFromServer);
+    }
+  </script>
+</body>
 </html>

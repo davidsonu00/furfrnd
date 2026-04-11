@@ -1,228 +1,162 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" user-scalable="no" , content="width=device-width, initial-scale=1.0">
-    <meta http-equivalent="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" user-scalable="no" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/css/styles.css">
-
-
-
-
     <title>furfrnd</title>
 </head>
-
 <body>
     <header class="registration-header">
         <div class="container">
-            <div class="logo"><!-- Inside your body or navbar -->
+            <div class="logo">
                 <div class="brand">
                     <a href="/"> <span class="logo-text"> 🐶 furfrnd</span></a>
                 </div>
-
             </div>
             <nav>
-                <% if (user) { %>
+                <% if (typeof user !== 'undefined' && user) { %>
                     <ul>
-                        <li class="link">
-                            <a href="/">Home</a>
-                        </li>
-                        <li class="link">
-                            <a href="/Shop">Shop</a>
-                        </li>
+                        <li class="link"><a href="/">Home</a></li>
+                        <li class="link"><a href="/shop">Shop</a></li>
                         <li class="nav-item">
-                            <a href="users/logout">
-                                <button type="submit" class="btn text-white px-3 "
-                                    style="background-color: #dc3545; border: none;">
+                            <a href="/register/logout">
+                                <button type="submit" class="btn text-white px-3" style="background-color: #dc3545; border: none;">
                                     Logout
                                 </button>
                             </a>
-
                         </li>
-
-
-
-
                     </ul>
-                    <% } else { %>
-                        <ul>
-                            <li class="link">
-                                <a href="/Shop">Shop</a>
-                            </li>
-                            <li class="link">
-                                <a href="/">Home</a>
-                            </li>
-                        </ul>
-                        <% } %>
+                <% } else { %>
+                    <ul>
+                        <li class="link"><a href="/register">User Login</a></li>
+                        <li class="link"><a href="/admin/login">Admin Login</a></li>
+                        <li class="link"><a href="/shop">Shop</a></li>
+                        <li class="link"><a href="/">Home</a></li>
+                    </ul>
+                <% } %>
             </nav>
         </div>
-
-
-
 
         <main>
             <section class="user-container login-section--display">
                 <div class="auth-container">
-                    <% if (success && success.length) { %>
+                    <% if (typeof success !== 'undefined' && success && success.length) { %>
                         <div class="flash-message success-flash">
                             <%= success.join(', ') %>
                         </div>
-                        <% } %>
-                        
-                        <% if (error && error.length) { %>
+                    <% } %>
+                    
+                    <% if (typeof error !== 'undefined' && error && error.length) { %>
                         <div class="flash-message error-flash">
-                            <%= error.join(' , ') %>
+                            <%= error.join(', ') %>
                         </div>
-                        <% } %>
-                                    <!-- Login / Register Box Below -->
-                                    <div class="auth-box">
-                                        ...
+                    <% } %>
+
+                    <!-- REGISTER FORM (Default) -->
+                    <div class="auth-box" id="register-form">
+                        <div class="registration">
+                            <div class="grid-two--column">
+                                <div class="form-text">
+                                    <h2>Hello friend!</h2>
+                                    <p>To connect with us please login with your account</p>
+                                    <button class="login-btn">Login here</button>
+                                </div>
+
+                                <div class="registration-form">
+                                    <h2>Create Account</h2>
+                                    <div class="social-icons">
+                                        <a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                                        <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                        <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                        <a href="https://google.com/" target="_blank"><i class="fa-brands fa-google"></i></a>
                                     </div>
-                </div>
+                                    <p>Or use your email for registration</p>
 
-
-                <div class="registration">
-                    <div class="grid-two--column">
-                        <div class="form-text">
-                            <h2>Hello friend!</h2>
-                            <p>To connect with us please login with your account</p>
-                            <button class="login-btn">Login here</button>
+                                    <form action="/register/register" method="post">
+                                        <div class="input-field">
+                                            <label for="fullname"><input type="text" name="fullname" id="fullname" placeholder="Full Name" required></label>
+                                        </div>
+                                        <div class="input-field">
+                                            <label for="email"><input type="email" name="email" id="email" placeholder="Email" required></label>
+                                        </div>
+                                        <div class="input-field">
+                                            <label for="password"><input type="password" name="password" id="password" placeholder="Password" required></label>
+                                        </div>
+                                        <div class="input-field">
+                                            <input type="submit" value="Register" class="submit-btn">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="registration-form">
-                            <h2>Create Account</h2>
-                            <div class="social-icons">
-                                <a href="https://discord.com/" target="_blank">
-                                    <i class="fa-brands fa-discord"></i>
-                                </a>
-                                <a href="https://linkedin.com/" target="_blank">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                </a>
-                                <a href="https://instagram.com/" target="_blank">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </a>
-                                <a href="https://google.com/" target="_blank">
-                                    <i class="fa-brands fa-google"></i>
-                                </a>
+                        <!-- LOGIN FORM -->
+                        <div class="login" id="direct-login">
+                            <div class="grid-two--column">
+                                <div class="form-text">
+                                    <h2>Welcome back!</h2>
+                                    <p>Enter your personal details and continue your journey with us!</p>
+                                    <button class="registration-btn">Register here</button>
+                                </div>
+
+                                <div class="login-form">
+                                    <h2>Sign in</h2>
+                                    <div class="social-icons">
+                                        <a href="https://discord.com/" target="_blank"><i class="fa-brands fa-discord"></i></a>
+                                        <a href="https://linkedin.com/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                                        <a href="https://instagram.com/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                                        <a href="https://google.com/" target="_blank"><i class="fa-brands fa-google"></i></a>
+                                    </div>
+                                    <p>Or use your Account</p>
+                                    
+                                    <form action="/register/login" method="post">
+                                        <div class="input-field">
+                                            <label for="login-email"><input type="email" name="email" id="login-email" placeholder="Email" required></label>
+                                        </div>
+                                        <div class="input-field">
+                                            <label for="login-password"><input type="password" name="password" id="login-password" placeholder="Password" required></label>
+                                        </div>
+                                        <div class="input-field">
+                                            <a href="/register/forgot-password" class="forgot-password-link">Forgot Password?</a>
+                                        </div>
+                                        <div class="input-field">
+                                            <input type="submit" value="Login" class="submit-btn">
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-                            <p>Or use your email for registration</p>
-
-                            <form action="/users/register" method="post">
-                                <div class="input-field">
-                                    <label for="Username">
-                                        <input type="text" name="fullname" id="Username" placeholder="Username">
-                                    </label>
-                                </div>
-                                <div class="input-field">
-                                    <label for="Email">
-                                        <input type="email" name="email" id="Email" placeholder="Email">
-                                    </label>
-                                </div>
-                                <div class="input-field">
-                                    <label for="Password">
-                                        <input type="password" name="password" id="Password" placeholder="Password">
-                                    </label>
-                                </div>
-                                <div class="input-field">
-                                    <label for="Submit">
-                                        <input type="submit" name="submit" value="register" id="Submit">
-                                    </label>
-                                </div>
-
-                            </form>
                         </div>
                     </div>
-
                 </div>
-
-
-                <div class="login" id="direct-login">
-                    <div class="grid-two--column">
-                        <div class="form-text">
-                            <h2>Welcome back!</h2>
-                            <p>Enter your personal details and continue your journey with us !</p>
-                            <button class="registration-btn">Register here</button>
-                        </div>
-
-                        <div class="login-form">
-                            <h2>Sign in </h2>
-                            <div class="social-icons">
-                                <a href="https://discord.com/" target="_blank">
-                                    <i class="fa-brands fa-discord"></i>
-                                </a>
-                                <a href="https://linkedin.com/" target="_blank">
-                                    <i class="fa-brands fa-linkedin"></i>
-                                </a>
-                                <a href="https://instagram.com/" target="_blank">
-                                    <i class="fa-brands fa-instagram"></i>
-                                </a>
-                                <a href="https://google.com/" target="_blank">
-                                    <i class="fa-brands fa-google"></i>
-                                </a>
-                            </div>
-                            <p>Or use your Account</p>
-                            <form action="/users/login" method="post">
-                                <div class="input-field">
-                                    <label for="Email1">
-                                        <input type="email" name="email" id="Email1" placeholder="Email">
-                                    </label>
-                                </div>
-                                <div class="input-field">
-                                    <label for="Password1">
-                                        <input type="password" name="password" id="Password1" placeholder="Password">
-                                    </label>
-                                </div>
-                                <div class="input-field">
-                                    <label for="login">
-                                        <input type="submit" name="login" value="login" id="login">
-                                    </label>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-
-                </div>
-
             </section>
-
         </main>
 
-
         <div class="foot-panel-4">
-
-
             <div class="copyright">
                 ©2024, विद्यालय Vyapaar, Inc. or its affiliates
             </div>
-
-            <div class="owner">
-
-                <p><a href="mailto:example@example.com"> Contact : Mishravishesh1403@gmail.com</a></p>
-            </div>
         </div>
-
     </header>
 
-
     <script>
-        const user_con = document.querySelector(' .user-container'); const
-            regis_btn = document.querySelector('.registration-btn'); const
-                login_btn = document.querySelector('.login-btn'); regis_btn.addEventListener('click', () => {
-                    user_con.classList.add('login-section--display')
+        const user_con = document.querySelector('.user-container');
+        const regis_btn = document.querySelector('.registration-btn');
+        const login_btn = document.querySelector('.login-btn');
 
-                })
+        regis_btn?.addEventListener('click', () => {
+            user_con.classList.add('login-section--display');
+        });
 
-        login_btn.addEventListener('click', () => {
-            user_con.classList.remove('login-section--display')
+        login_btn?.addEventListener('click', () => {
+            user_con.classList.remove('login-section--display');
+        });
 
-        })
-
-
+        // Auto-hide flash messages
         setTimeout(() => {
             const flash = document.querySelector(".flash-message");
             if (flash) {
@@ -230,12 +164,7 @@
                 flash.style.opacity = "0";
                 setTimeout(() => flash.remove(), 600);
             }
-        }, 4000); // Hide after 4 seconds
-
-
-
+        }, 4000);
     </script>
-
 </body>
-
-</html>
+</html> -->

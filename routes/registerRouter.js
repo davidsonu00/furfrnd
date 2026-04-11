@@ -1,15 +1,13 @@
-const express = require('express') ;
-const router = express.Router() ;
-const isloggedIn = require('../middlewares/isLoggedIn');
-const productModel = require('../models/product-model');
-router.get('/', function(req, res) {
-    res.render('register');
-});
+const express = require('express');
+const router = express.Router();
+const authController = require('../controllers/authController');
 
+router.post('/', authController.registerUser);
+router.post('/verify-otp', authController.verifyRegistrationOtp);
+router.post('/login', authController.loginUser);
+router.post('/forgot-password', authController.forgotPassword);
+router.post('/verify-reset-otp', authController.verifyResetOtp);
+router.post('/reset-password', authController.resetPassword);
+router.get('/logout', authController.logout);
 
-router.get('/shop' , isloggedIn ,  async function(req , res){
-    let products = await productModel.find()
-    res.render('shop' ,{ products }) ; 
-})
-
-module.exports = router ;
+module.exports = router;
