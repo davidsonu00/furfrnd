@@ -1,360 +1,443 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FurFrnd Shop</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2AA8A8;
-            --secondary: #FF6B6B;
-            --dark: #2c3e50;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Furfrnd - Shop Dogs</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              teal: "#2AA8A8",
+              coral: "#FF6B6B",
+              cream: "#F8F7F4",
+              dark: "#0F172A"
+            }
+          },
+          boxShadow: {
+            soft: "0 20px 50px rgba(15, 23, 42, 0.12)"
+          }
         }
+      }
+    };
+  </script>
 
-        .brand-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            padding: 0.5rem 0;
-        }
-
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(120deg, #ffffff, #e0f7f7);
-            color: #2c3e50;
-        }
-
-        .navbar {
-            background: rgba(255, 255, 255, 0.95);
-        }
-
-
-
-
-        .brand-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link {
-            color: var(--dark) !important;
-            font-weight: 500;
-            padding: 0.5rem 1rem !important;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            background: rgba(42, 168, 168, 0.1);
-            color: var(--primary) !important;
-        }
-
-        .sidebar {
-            background: rgba(255, 255, 255, 0.98);
-            border-right: 1px solid rgba(42, 168, 168, 0.1);
-            box-shadow: 2px 0 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .sidebar-heading {
-            color: var(--primary);
-            font-weight: 600;
-            border-bottom: 2px solid var(--primary);
-            padding-bottom: 0.5rem;
-        }
-
-        .filter-link {
-            color: var(--dark);
-            transition: all 0.2s ease;
-            position: relative;
-        }
-
-        .filter-link:hover {
-            color: var(--secondary);
-            padding-left: 1rem;
-        }
-
-        .filter-link:hover::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 8px;
-            height: 8px;
-            background: var(--secondary);
-            border-radius: 50%;
-        }
-
-        .shop-title {
-            font-weight: bold;
-            color: #2AA8A8;
-        }
-
-        .card {
-            border: none;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card img {
-            height: 250px;
-            object-fit: cover;
-            width: 100%;
-        }
-
-        .card-img-container {
-            height: 250px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .card-img-top {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        /* Remove fixed background from footer in CSS */
-        .card-footer {
-            /* Remove any existing background-color declaration */
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.75rem 1rem;
-        }
-
-        .btn-add-to-cart {
-            border-radius: 50%;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .btn-add-to-cart {
-            background: rgb(24, 2, 51);
-            color: #2AA8A8;
-            border: 2px solid #2AA8A8;
-            border-radius: 50%;
-            font-weight: bold;
-        }
-
-        .btn-add-to-cart:hover {
-            background: #FF6B6B;
-            color: white;
-            border-color: #FF6B6B;
-        }
-
-        footer {
-            background: linear-gradient(45deg, #2AA8A8, #FF6B6B);
-            color: white;
-            text-align: center;
-            padding: 2rem 0;
-        }
-
-        .floating-cart {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #FF6B6B;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            z-index: 999;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
-
-        .floating-cart:hover {
-            background: #d94b4b;
-        }
-
-        .flash-message {
-            background-color: #2AA8A8;
-            color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            margin: 1rem 0;
-            font-weight: bold;
-        }
-    </style>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+<body class="bg-brand-cream text-slate-800">
+  <%- include("partials/header") %>
 
-<body>
-    <nav class="navbar navbar-expand-lg navbar-custom fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <span class="brand-logo">🐶 furfrnd</span>
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <% if (user) { %>
-                        <li class="nav-item">
-                            <a class="nav-link nav-link-custom" href="shop/cart">Cart</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link nav-link-custom dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">
-                                <i class="bi bi-person-circle me-1"></i>Account
-                            </a>
-
-                            <ul class="dropdown-menu dropdown-menu-end">
-                                <li><a class="dropdown-item" href="/profile">Profile</a></li>
-                                <li><a class="dropdown-item" href="/orders">Orders</a></li>
-                                
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                               
-                            </ul>
-                        </li>
-                        <li><a class="dropdown-item text-danger" href="register/logout">Logout</a></li>
-                        <% } else { %>
-                            <li class="nav-item">
-                                <a class="nav-link nav-link-custom" href="/">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-outline-primary ms-2" href="/register">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="btn btn-primary ms-2" href="/register">Register</a>
-                            </li>
-                            <% } %>
-                </ul>
-            </div>
+  <main>
+    <section class="relative overflow-hidden bg-[linear-gradient(rgba(42,168,168,0.86),rgba(42,168,168,0.72)),url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center">
+      <div class="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div class="max-w-3xl text-white">
+          <span class="inline-flex rounded-full border border-white/30 bg-white/10 px-4 py-2 text-sm font-semibold backdrop-blur-md">
+            Healthy pups. Transparent pricing. Smooth buying experience.
+          </span>
+          <h1 class="mt-6 text-4xl font-black leading-tight sm:text-5xl lg:text-6xl">
+            Find your next four-legged family member.
+          </h1>
+          <p class="mt-6 max-w-2xl text-base leading-7 text-white/90 sm:text-lg">
+            Browse our handpicked dog listings with breed details, vaccination status, temperament, and price.
+            These demo products are perfect for making your deployed site look complete and polished.
+          </p>
         </div>
-    </nav>
+      </div>
+    </section>
 
-    <% if (success && success.length> 0) { %>
-        <div class="container">
-            <div class="flash-message">
-                <%= success[0] %>
-            </div>
+    <%
+      const dogs = [
+        {
+          id: "dog-1",
+          name: "Jimmy",
+          breed: "German Shepherd",
+          age: "12 weeks",
+          price: "₹45,000",
+          vaccinations: "Complete",
+          size: "Medium · 25-35 kg",
+          gender: "Male",
+          color: "Black & Tan",
+          location: "Lucknow",
+          temperament: ["Family-friendly", "Highly Trainable", "Protective"],
+          description: "A confident and intelligent German Shepherd puppy ideal for active families and first-time protection dog owners.",
+          image: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          id: "dog-2",
+          name: "Bella",
+          breed: "Beagle",
+          age: "16 weeks",
+          price: "₹32,000",
+          vaccinations: "Rabies Pending",
+          size: "Small · 10-15 kg",
+          gender: "Female",
+          color: "Tri-color",
+          location: "Kanpur",
+          temperament: ["Gentle", "Playful", "Low Maintenance"],
+          description: "Bella is a cheerful Beagle pup with a curious nature and a sweet personality that fits perfectly in family homes.",
+          image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          id: "dog-3",
+          name: "Lily",
+          breed: "Golden Retriever",
+          age: "14 weeks",
+          price: "₹55,000",
+          vaccinations: "Complete",
+          size: "Large · 30-40 kg",
+          gender: "Female",
+          color: "Golden",
+          location: "Prayagraj",
+          temperament: ["Loyal", "Great with Kids", "Intelligent"],
+          description: "Lily is a warm, affectionate Golden Retriever puppy known for her calm nature and excellent family compatibility.",
+          image: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          id: "dog-4",
+          name: "Rocky",
+          breed: "Labrador Retriever",
+          age: "13 weeks",
+          price: "₹42,000",
+          vaccinations: "Complete",
+          size: "Large · 28-36 kg",
+          gender: "Male",
+          color: "Cream",
+          location: "Delhi",
+          temperament: ["Friendly", "Energetic", "Obedient"],
+          description: "Rocky is an outgoing Labrador pup who loves people, adapts quickly, and makes an excellent home companion.",
+          image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          id: "dog-5",
+          name: "Coco",
+          breed: "Pomeranian",
+          age: "10 weeks",
+          price: "₹28,000",
+          vaccinations: "1st Round Done",
+          size: "Toy · 3-5 kg",
+          gender: "Female",
+          color: "White",
+          location: "Noida",
+          temperament: ["Cute", "Alert", "Apartment-friendly"],
+          description: "Coco is a tiny, fluffy Pomeranian with a charming look and bright personality, perfect for compact homes.",
+          image: "https://images.unsplash.com/photo-1525253086316-d0c936c814f8?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          id: "dog-6",
+          name: "Max",
+          breed: "Siberian Husky",
+          age: "15 weeks",
+          price: "₹60,000",
+          vaccinations: "Complete",
+          size: "Medium · 20-27 kg",
+          gender: "Male",
+          color: "Gray & White",
+          location: "Jaipur",
+          temperament: ["Active", "Bold", "Social"],
+          description: "Max is a striking Husky puppy with beautiful markings, high energy, and a fun-loving social temperament.",
+          image: "https://images.unsplash.com/photo-1601758228041-f3b2795255f1?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          id: "dog-7",
+          name: "Milo",
+          breed: "Shih Tzu",
+          age: "11 weeks",
+          price: "₹26,000",
+          vaccinations: "1st Round Done",
+          size: "Toy · 4-7 kg",
+          gender: "Male",
+          color: "Brown & White",
+          location: "Varanasi",
+          temperament: ["Calm", "Loving", "Indoor-friendly"],
+          description: "Milo is a cuddly Shih Tzu puppy with a calm temperament and a sweet, affectionate bond with people.",
+          image: "https://images.unsplash.com/photo-1591160690555-5debfba289f0?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+          id: "dog-8",
+          name: "Zara",
+          breed: "Doberman",
+          age: "17 weeks",
+          price: "₹52,000",
+          vaccinations: "Complete",
+          size: "Large · 32-40 kg",
+          gender: "Female",
+          color: "Black & Rust",
+          location: "Gurgaon",
+          temperament: ["Sharp", "Athletic", "Loyal"],
+          description: "Zara is an elegant Doberman puppy with sharp attention, athletic movement, and a strong loyal nature.",
+          image: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80"
+        }
+      ];
+    %>
+
+    <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div class="flex flex-col gap-6 rounded-[28px] border border-slate-200 bg-white p-6 shadow-soft sm:flex-row sm:items-center sm:justify-between sm:p-8">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.2em] text-teal-700">Available Dogs</p>
+          <h2 class="mt-3 text-3xl font-black text-slate-900">Product-style listings for your live store</h2>
+          <p class="mt-3 max-w-2xl text-sm leading-6 text-slate-600 sm:text-base">
+            These are static showcase listings for deployment. You can later replace them with real admin-uploaded dogs from the database.
+          </p>
         </div>
-        <% } %>
 
-            <a href="<%= user ? '/shop/cart' : '/register' %>" class="floating-cart">
-                <i class="bi bi-cart"></i>
-                <% const count=cartCount || 0; %>
-                    <% if (count> 0) { %>
-                        <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                            <%= count %>
-                        </span>
-                        <% } %>
-            </a>
+        <div class="grid grid-cols-2 gap-4 sm:w-auto">
+          <div class="rounded-2xl bg-slate-50 px-5 py-4 text-center">
+            <p class="text-2xl font-black text-slate-900"><%= dogs.length %></p>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Listings</p>
+          </div>
+          <div class="rounded-2xl bg-teal-50 px-5 py-4 text-center">
+            <p class="text-2xl font-black text-teal-700">100%</p>
+            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">Demo Ready</p>
+          </div>
+        </div>
+      </div>
 
-            <div class="container-fluid mt-5">
-                <div class="row">
-                    <!-- Sidebar -->
-                    <!-- Sidebar -->
-                    <div class="col-lg-2 col-md-4 sidebar position-sticky">
-                        <div class="p-4">
-                            <h5 class="sidebar-heading mb-4">Filter & Sort</h5>
+      <div class="mt-10 grid gap-8 sm:grid-cols-2 xl:grid-cols-3">
+        <% dogs.forEach(dog => { %>
+          <article class="group overflow-hidden rounded-[30px] border border-slate-200 bg-white shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-2xl">
+            <div class="relative overflow-hidden">
+              <img
+                src="<%= dog.image %>"
+                alt="<%= dog.name %> - <%= dog.breed %>"
+                class="h-72 w-full object-cover transition duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-900/10 to-transparent"></div>
 
-                            <div class="mb-4">
-                                <label class="form-label fw-bold text-primary">Sort By</label>
-                                <select class="form-select border-primary">
-                                    <option>Popular</option>
-                                    <option>Price: Low to High</option>
-                                    <option>Price: High to Low</option>
-                                </select>
-                            </div>
+              <div class="absolute left-5 top-5 rounded-full bg-white/90 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-teal-700 shadow">
+                <%= dog.breed %>
+              </div>
 
-                            <div class="mb-4">
-                                <h6 class="sidebar-heading">Collections</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="#" class="filter-link py-2 d-block">New Arrivals</a></li>
-                                    <li><a href="#" class="filter-link py-2 d-block">Premium Breeds</a></li>
-                                    <li><a href="#" class="filter-link py-2 d-block">Family Friendly</a></li>
-                                </ul>
-                            </div>
-
-                            <div class="mb-4">
-                                <h6 class="sidebar-heading">Filters</h6>
-                                <ul class="list-unstyled">
-                                    <li><a href="#" class="filter-link py-2 d-block">Available Now</a></li>
-                                    <li><a href="#" class="filter-link py-2 d-block">Special Offers</a></li>
-                                    <li><a href="#" class="filter-link py-2 d-block">Puppy Training Kit</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- Products -->
-                    <div class="col-md-9">
-                        <h2 class="shop-title mb-4">Shop Now</h2>
-                        <div class="row g-4">
-                            <% products.forEach(function(product) { %>
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <!-- Apply background color to image container -->
-                                        <div class="card-img-container"
-                                            style="background-color: <%= product.bgcolor %>;">
-                                            <img src="data:image/png;base64,<%= product.image.toString('base64') %>"
-                                                alt="<%= product.name %>" class="card-img-top">
-                                        </div>
-
-                                        <!-- Apply panel color and text color to footer -->
-                                        <div class="card-footer" style="background-color: <%= product.panelcolor %>; 
-                                                    color: <%= product.textcolor %>;">
-                                            <div>
-                                                <strong>
-                                                    <%= product.name %>
-                                                </strong><br>
-                                                ₹ <%= product.price %>
-                                                    <% if (product.discount> 0) { %>
-                                                        <span class="text-danger ms-2">
-                                                            <del>₹ <%= product.price + product.discount %></del>
-                                                        </span>
-                                                        <% } %>
-                                            </div>
-                                            <a href="/shop/addToCart/<%= product._id %>">
-                                                <button class="btn btn-add-to-cart" style="color: <%= product.textcolor %>;
-                                                               border-color: <%= product.textcolor %>;">
-                                                    +
-                                                </button>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <% }) %>
-                        </div>
-                    </div>
+              <div class="absolute bottom-5 left-5 right-5 flex items-end justify-between gap-4">
+                <div>
+                  <h3 class="text-2xl font-black text-white"><%= dog.name %></h3>
+                  <p class="mt-1 text-sm font-medium text-white/85"><%= dog.location %> · <%= dog.gender %></p>
                 </div>
+                <div class="rounded-full bg-white px-4 py-2 text-sm font-black text-slate-900 shadow-lg">
+                  <%= dog.price %>
+                </div>
+              </div>
             </div>
 
-            <footer class="mt-5">
-                <div class="container">
-                    <p>&copy; <%= new Date().getFullYear() %> FurFrnd. All rights reserved.</p>
-                </div>
-            </footer>
+            <div class="p-6">
+              <p class="text-sm leading-6 text-slate-600">
+                <%= dog.description %>
+              </p>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+              <div class="mt-5 grid grid-cols-2 gap-3">
+                <div class="rounded-2xl bg-slate-50 px-4 py-3">
+                  <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Age</p>
+                  <p class="mt-1 text-sm font-semibold text-slate-800"><%= dog.age %></p>
+                </div>
+                <div class="rounded-2xl bg-slate-50 px-4 py-3">
+                  <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Vaccination</p>
+                  <p class="mt-1 text-sm font-semibold text-slate-800"><%= dog.vaccinations %></p>
+                </div>
+                <div class="rounded-2xl bg-slate-50 px-4 py-3">
+                  <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Size</p>
+                  <p class="mt-1 text-sm font-semibold text-slate-800"><%= dog.size %></p>
+                </div>
+                <div class="rounded-2xl bg-slate-50 px-4 py-3">
+                  <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Color</p>
+                  <p class="mt-1 text-sm font-semibold text-slate-800"><%= dog.color %></p>
+                </div>
+              </div>
+
+              <div class="mt-5 flex flex-wrap gap-2">
+                <% dog.temperament.forEach(tag => { %>
+                  <span class="rounded-full bg-teal-50 px-4 py-2 text-xs font-bold text-teal-700">
+                    <%= tag %>
+                  </span>
+                <% }) %>
+              </div>
+
+              <div class="mt-6 flex gap-3">
+                <button
+                  type="button"
+                  class="flex-1 rounded-full border border-slate-300 px-4 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+                  onclick='openDogModal(<%- JSON.stringify(dog) %>)'
+                >
+                  View Details
+                </button>
+
+                <% if (user) { %>
+                  <a
+                    href="/cart"
+                    class="flex-1 rounded-full bg-teal-700 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-teal-800"
+                  >
+                    Add to Cart
+                  </a>
+                <% } else { %>
+                  <button
+                    type="button"
+                    data-open-modal="user-login"
+                    class="flex-1 rounded-full bg-teal-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-teal-800"
+                  >
+                    Login to Buy
+                  </button>
+                <% } %>
+              </div>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </section>
+
+    <section class="pb-16">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="grid gap-6 md:grid-cols-3">
+          <div class="rounded-[28px] border border-slate-200 bg-white p-8 shadow-soft">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-teal-50 text-2xl text-teal-700">
+              <i class="fas fa-shield-dog"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Clear trust signals</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Every listing highlights age, vaccination, size, and temperament so the page feels complete and reliable.
+            </p>
+          </div>
+
+          <div class="rounded-[28px] border border-slate-200 bg-white p-8 shadow-soft">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-rose-50 text-2xl text-rose-500">
+              <i class="fas fa-heart-circle-check"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Beautiful first impression</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Static demo dogs make the store look polished for launch, investor review, portfolio demo, or first deployment.
+            </p>
+          </div>
+
+          <div class="rounded-[28px] border border-slate-200 bg-white p-8 shadow-soft">
+            <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-2xl text-amber-500">
+              <i class="fas fa-store"></i>
+            </div>
+            <h3 class="mt-5 text-xl font-extrabold text-slate-900">Easy to replace later</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-600">
+              Once admin upload is ready, you can swap this static array with database data without redesigning the page.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="dogModal" class="pointer-events-none fixed inset-0 z-[110] hidden items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm">
+    <div class="w-full max-w-3xl overflow-hidden rounded-[32px] bg-white shadow-2xl">
+      <div class="grid md:grid-cols-2">
+        <div class="h-full">
+          <img id="dogModalImage" src="" alt="" class="h-full min-h-[320px] w-full object-cover" />
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <div class="flex items-start justify-between gap-4">
+            <div>
+              <p id="dogModalBreed" class="text-sm font-black uppercase tracking-[0.18em] text-teal-700"></p>
+              <h3 id="dogModalName" class="mt-2 text-3xl font-black text-slate-900"></h3>
+              <p id="dogModalPrice" class="mt-3 text-2xl font-black text-slate-900"></p>
+            </div>
+
+            <button
+              type="button"
+              onclick="closeDogModal()"
+              class="rounded-xl p-2 text-slate-500 transition hover:bg-slate-100 hover:text-slate-700"
+            >
+              <i class="fas fa-xmark text-xl"></i>
+            </button>
+          </div>
+
+          <p id="dogModalDescription" class="mt-5 text-sm leading-7 text-slate-600"></p>
+
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <div class="rounded-2xl bg-slate-50 px-4 py-3">
+              <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Age</p>
+              <p id="dogModalAge" class="mt-1 text-sm font-semibold text-slate-800"></p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 px-4 py-3">
+              <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Vaccination</p>
+              <p id="dogModalVaccination" class="mt-1 text-sm font-semibold text-slate-800"></p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 px-4 py-3">
+              <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Size</p>
+              <p id="dogModalSize" class="mt-1 text-sm font-semibold text-slate-800"></p>
+            </div>
+            <div class="rounded-2xl bg-slate-50 px-4 py-3">
+              <p class="text-xs font-black uppercase tracking-[0.16em] text-slate-500">Location</p>
+              <p id="dogModalLocation" class="mt-1 text-sm font-semibold text-slate-800"></p>
+            </div>
+          </div>
+
+          <div class="mt-5">
+            <p class="text-xs font-black uppercase tracking-[0.18em] text-slate-500">Temperament</p>
+            <div id="dogModalTags" class="mt-3 flex flex-wrap gap-2"></div>
+          </div>
+
+          <div class="mt-8 flex gap-3">
+            <% if (user) { %>
+              <a href="/cart" class="flex-1 rounded-full bg-teal-700 px-4 py-3 text-center text-sm font-bold text-white transition hover:bg-teal-800">
+                Continue to Cart
+              </a>
+            <% } else { %>
+              <button type="button" data-open-modal="user-login" class="flex-1 rounded-full bg-teal-700 px-4 py-3 text-sm font-bold text-white transition hover:bg-teal-800">
+                Login to Buy
+              </button>
+            <% } %>
+
+            <button type="button" onclick="closeDogModal()" class="rounded-full border border-slate-300 px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("partials/footer") %>
+
+  <script>
+    const dogModal = document.getElementById("dogModal");
+
+    function openDogModal(dog) {
+      document.getElementById("dogModalImage").src = dog.image;
+      document.getElementById("dogModalImage").alt = `${dog.name} - ${dog.breed}`;
+      document.getElementById("dogModalBreed").textContent = dog.breed;
+      document.getElementById("dogModalName").textContent = dog.name;
+      document.getElementById("dogModalPrice").textContent = dog.price;
+      document.getElementById("dogModalDescription").textContent = dog.description;
+      document.getElementById("dogModalAge").textContent = dog.age;
+      document.getElementById("dogModalVaccination").textContent = dog.vaccinations;
+      document.getElementById("dogModalSize").textContent = dog.size;
+      document.getElementById("dogModalLocation").textContent = `${dog.location} · ${dog.gender}`;
+
+      const tagsContainer = document.getElementById("dogModalTags");
+      tagsContainer.innerHTML = "";
+      dog.temperament.forEach(tag => {
+        const span = document.createElement("span");
+        span.className = "rounded-full bg-teal-50 px-4 py-2 text-xs font-bold text-teal-700";
+        span.textContent = tag;
+        tagsContainer.appendChild(span);
+      });
+
+      dogModal.classList.remove("hidden", "pointer-events-none");
+      dogModal.classList.add("flex");
+      document.body.classList.add("overflow-hidden");
+    }
+
+    function closeDogModal() {
+      dogModal.classList.add("hidden", "pointer-events-none");
+      dogModal.classList.remove("flex");
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    dogModal?.addEventListener("click", (e) => {
+      if (e.target === dogModal) closeDogModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeDogModal();
+    });
+  </script>
 </body>
-
 </html>

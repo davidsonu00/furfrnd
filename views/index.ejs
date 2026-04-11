@@ -214,7 +214,9 @@
 
   <%- include('partials/footer') %>
 
-  <% const flashSuccess = success && success.length ? success[0] : null; %>
+  <%- include('partials/auth-modals') %>
+
+  <!-- <% const flashSuccess = success && success.length ? success[0] : null; %>
   <% const flashError = error && error.length ? error[0] : null; %>
   <% const currentModal = modal || ''; %>
   <% const currentEmail = email || ''; %>
@@ -615,7 +617,82 @@
     const modalFromServer = "<%= currentModal %>";
     if (modalFromServer) {
       openModal(modalFromServer);
+    } -->
+
+    <script>
+    const dogDetails = [
+      {
+        name: "Jimmy — German Shepherd",
+        age: "12 weeks",
+        vaccinations: "Complete",
+        size: "Medium (25-35 kg)",
+        traits: ["Family-friendly", "High Energy", "Easy Training"],
+        price: "₹45,000"
+      },
+      {
+        name: "Bella — Beagle",
+        age: "16 weeks",
+        vaccinations: "Pending Rabies",
+        size: "Small (10-15 kg)",
+        traits: ["Gentle", "Playful", "Low Maintenance"],
+        price: "₹32,000"
+      },
+      {
+        name: "Lily — Golden Retriever",
+        age: "14 weeks",
+        vaccinations: "Complete",
+        size: "Large (30-40 kg)",
+        traits: ["Intelligent", "Loyal", "Great with Kids"],
+        price: "₹55,000"
+      }
+    ];
+
+    const slides = document.querySelectorAll('.carousel-item');
+    let activeSlide = 0;
+
+    function updateDogDetails(index) {
+      const dog = dogDetails[index];
+      document.getElementById("breed-name").textContent = dog.name;
+      document.getElementById("breed-price").textContent = dog.price;
+      document.getElementById("breed-age").innerHTML = `<strong>Age:</strong> ${dog.age}`;
+      document.getElementById("breed-vaccinations").innerHTML = `<strong>Vaccinations:</strong> ${dog.vaccinations}`;
+      document.getElementById("breed-size").innerHTML = `<strong>Size:</strong> ${dog.size}`;
+      document.getElementById("breed-traits").innerHTML = dog.traits
+        .map(trait => `<span class="rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-700">${trait}</span>`)
+        .join('');
     }
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('hidden', i !== index);
+        slide.classList.toggle('block', i === index);
+      });
+      activeSlide = index;
+      updateDogDetails(index);
+    }
+
+    document.getElementById('nextSlide')?.addEventListener('click', () => {
+      showSlide((activeSlide + 1) % slides.length);
+    });
+
+    document.getElementById('prevSlide')?.addEventListener('click', () => {
+      showSlide((activeSlide - 1 + slides.length) % slides.length);
+    });
+
+    if (slides.length) {
+      setInterval(() => {
+        showSlide((activeSlide + 1) % slides.length);
+      }, 3500);
+      showSlide(0);
+    }
+
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn?.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  
   </script>
 </body>
 </html>
